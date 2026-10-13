@@ -1,0 +1,27 @@
+project:
+  name: clasificador-lesiones-mamarias
+  seed: 2026
+
+data:
+  development_dataset: BUSI
+  external_dataset: BUS-BRA
+  positive_class: malignant
+  split: [0.60, 0.20, 0.20]
+  group_by_patient_or_relation: true
+  image_size: 224
+
+evaluation:
+  thresholds:
+    - 0.50
+    - validation_sensitivity_0.90
+    - validation_sensitivity_0.95_to_0.98
+  bootstrap_repetitions: 1000
+  bootstrap_unit: patient_or_relation_group
+
+model:
+  architecture: efficientnet_b0
+  initial_weights: imagenet
+  domain_weights_comparison: radimagenet
+  max_epochs: 20
+  early_stopping_patience: 4
+

@@ -1,0 +1,40 @@
+project:
+  name: busbra-efficientnet-b0
+  seed: 2026
+
+data:
+  fold_csv: data/raw/BUS-BRA/5-fold-cv.csv
+  metadata_csv: data/raw/BUS-BRA/bus_data.csv
+  image_root: data/raw/BUS-BRA/Images
+  test_fold: 1
+  validation_fold: 2
+  image_extension: .png
+  image_column: image_path
+  label_column: label
+  patient_column: patient_id
+  split_column: split
+  positive_labels: [malignant, 1, "1"]
+  image_size: 224
+  num_workers: 4
+
+model:
+  architecture: efficientnet_b0
+  weights: imagenet
+  dropout: 0.2
+  freeze_backbone_epochs: 2
+
+training:
+  batch_size: 32
+  epochs: 20
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  early_stopping_patience: 4
+  amp: true
+
+output:
+  directory: outputs/busbra_efficientnet_b0
+
+# IMPORTANTE
+# El protocolo V2 reserva BUS-BRA para validación externa del modelo entrenado en BUSI.
+# Esta configuración crea un experimento distinto que entrena con BUS-BRA. No deben
+# compararse ambos resultados como si pertenecieran al mismo protocolo congelado.

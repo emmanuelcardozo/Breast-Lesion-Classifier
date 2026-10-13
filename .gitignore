@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Datasets, models and generated artifacts
+data/raw/*
+data/interim/*
+data/processed/*
+models/*
+outputs/figures/*
+outputs/metrics/*
+outputs/reports/*
+!**/.gitkeep
+!outputs/reports/**/
+!outputs/reports/**/README.md
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Local QA and build files
+tmp/
